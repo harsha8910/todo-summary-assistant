@@ -7,7 +7,10 @@ require("dotenv").config();
 const todoRoutes = require("./routes/todoRoutes");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://todo-summary-assistant-zeta.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 
 app.use("/", todoRoutes);
