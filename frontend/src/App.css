@@ -1,0 +1,219 @@
+/* App.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #6a0572; /* Deep Purple */
+  --secondary-color: #8e2de2; /* Lighter Purple */
+  --accent-color: #ffb800; /* Vibrant Gold/Yellow for highlights */
+  --text-color: #333;
+  --light-text-color: #f4f4f4;
+  --background-color: #f0f2f5; /* Light Grey background */
+  --card-background: #ffffff; /* White for cards */
+  --border-color: #e0e0e0;
+  --danger-color: #dc3545; /* Red for delete actions */
+  --success-color: #28a745; /* Green for success/save */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to the top */
+  min-height: 100vh;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 50px; /* Add some margin at the bottom */
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  color: var(--secondary-color);
+  margin-top: 40px;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+/* --- General Button Styles --- */
+button {
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-left: 10px; /* Space between buttons/inputs */
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- Input Field Styles --- */
+input[type="text"] {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1em;
+  width: calc(100% - 130px); /* Adjust width considering button and margin */
+  max-width: 300px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(106, 5, 114, 0.2);
+}
+
+/* --- AddTodo Component Specific Styles --- */
+div:has(> input[type="text"] + button) { /* Selects the div containing the AddTodo input and button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* --- TodoList Component Specific Styles --- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- TodoItem Component Specific Styles --- */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+li span {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 1.1em;
+  color: var(--text-color);
+}
+
+li button {
+  margin-left: 10px;
+}
+
+/* Specific button styles for TodoItem */
+li button:nth-of-type(1) { /* Edit/Save button */
+  background-color: var(--secondary-color);
+}
+
+li button:nth-of-type(1):hover {
+  background-color: #7a1fad; /* Darker secondary */
+}
+
+li button:nth-of-type(2) { /* Delete button */
+  background-color: var(--danger-color);
+}
+
+li button:nth-of-type(2):hover {
+  background-color: #c82333; /* Darker danger */
+}
+
+/* When editing a todo item */
+li input[type="text"] {
+  flex-grow: 1;
+  margin-right: 10px;
+  max-width: unset; /* Remove max-width restriction for editing input */
+  width: auto; /* Allow it to take necessary width */
+}
+
+/* --- Summary Component Specific Styles --- */
+div:has(> button:last-of-type) { /* Selects the div containing the Summarize button */
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px dashed var(--border-color);
+}
+
+div:has(> button:last-of-type) button {
+  background-color: var(--accent-color);
+  color: var(--text-color); /* Text color for the gold button */
+  font-weight: 700;
+}
+
+div:has(> button:last-of-type) button:hover {
+  background-color: #e6a700; /* Darker gold */
+}
+
+.summary-content {
+  margin-top: 20px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+.summary-content h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.summary-content p {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Error Message Style */
+div[style*="color: red"] {
+  padding: 10px;
+  background-color: #ffe6e6; /* Light red background */
+  border: 1px solid var(--danger-color);
+  border-radius: 8px;
+  margin-top: 1em;
+  font-weight: 500;
+  color: var(--danger-color) !important; /* Ensure it's red */
+}
